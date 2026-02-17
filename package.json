@@ -1,0 +1,17 @@
+{
+  "name": "holelauncherbackend",
+  "version": "1.0.0",
+  "description": "backend for launcher",
+  "main": "index.js",
+  "scripts": {
+    "build": "node build.js",
+    "start": "node main.js",
+    "build_server": "node build_server.js"
+  },
+  "author": "Utrit",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "node-fetch": "^3.3.2"
+  }
+}

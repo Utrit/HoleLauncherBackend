@@ -1,0 +1,259 @@
+{
+    "InstanceId": "prod",
+    "InstanceName": "TestINSTANCE1",
+    "InstanceMCVersion": "1.20.1",
+    "InstanceForgeVersion": "47.4.16",
+    "Mods": [
+        {
+            "ModName": "malum.jar",
+            "ModVersion": 33,
+            "ModLink": "https://cdn.modrinth.com/data/jgzwYsAN/versions/U88VbrNU/malum-1.20.1-1.6.7.jar",
+            "ModSHA512": "76b3a9d6fad5a4f0e1a24dd4ff40b3215b78319373f5b3ed7261570f2ae22c3601dd873907356476a03e10104669194c9fdb693ef7643edccd6062c97083cd2b",
+            "ModServerSide": "required",
+            "ModClientSide": "required",
+            "ModType": 0,
+            "ModPath": "/mods"
+        },
+        {
+            "ModName": "blood-magic.jar",
+            "ModVersion": 33,
+            "ModLink": "https://cdn.modrinth.com/data/PbNc6qBY/versions/bgY3aWtr/bloodmagic-1.20.1-3.3.5-47.jar",
+            "ModSHA512": "ddc66c3869933f2b6c151e0d9a127f4d4158cdda1ecb84a3eac593351f4b1d55824a8f6a06814095b1e75895fbff530f54ff2b52c3b2bcb6a1fe462d557324b5",
+            "ModServerSide": "required",
+            "ModClientSide": "required",
+            "ModType": 0,
+            "ModPath": "/mods"
+        },
+        {
+            "ModName": "pneumaticcraft-repressurized.jar",
+            "ModVersion": 33,
+            "ModLink": "https://cdn.modrinth.com/data/ncAcdgk7/versions/kjsVKEOw/pneumaticcraft-repressurized-6.0.22%2Bmc1.20.1.jar",
+            "ModSHA512": "1f4d5e3d20f19014819a8f7bec5b0a9a278975bc5607a3a3d3134ed8d5396040471957aed1c76833707715c17b7980df0b0f88899d17bd631043839021a38b85",
+            "ModServerSide": "required",
+            "ModClientSide": "required",
+            "ModType": 0,
+            "ModPath": "/mods"
+        },
+        {
+            "ModName": "lodestonelib.jar",
+            "ModVersion": 33,
+            "ModLink": "https://cdn.modrinth.com/data/bN3xUWdo/versions/dRIycWqx/lodestone-1.20.1-1.6.4.1.jar",
+            "ModSHA512": "fec5107deb73c06c4b1756349cb874e0933c4181fd20e8528e46a24e35ccb048898c8607830deea3242d7303784a9c3a03f3fadd40d13fb6dc27a34a77f5cc85",
+            "ModServerSide": "required",
+            "ModClientSide": "required",
+            "ModType": 0,
+            "ModPath": "/mods"
+        },
+        {
+            "ModName": "enderio.jar",
+            "ModVersion": 33,
+            "ModLink": "https://cdn.modrinth.com/data/49ZofO4f/versions/LKwYlIgV/EnderIO-1.20.1-6.2.17-beta-all.jar",
+            "ModSHA512": "7d5fd43e03e2d19ac668a5adf1ee96fd88f1b45cf592794182f9ac1bcc2e55a01d4c1333432e324cad2495a6812e26442f0101207cb606a27ec343554c291a1a",
+            "ModServerSide": "required",
+            "ModClientSide": "required",
+            "ModType": 0,
+            "ModPath": "/mods"
+        },
+        {
+            "ModName": "patchouli.jar",
+            "ModVersion": 33,
+            "ModLink": "https://cdn.modrinth.com/data/nU0bVIaL/versions/8Qyw08ld/Patchouli-1.20.1-84.1-FORGE.jar",
+            "ModSHA512": "d87143ae5dc979e8d65dd35ff0916077a355c503c4a906bed0d9dbe600ff0602e5296800cbdf2260d47033f664691b54e1b18a1b9835339c4e13d69fc4251f1b",
+            "ModServerSide": "required",
+            "ModClientSide": "required",
+            "ModType": 0,
+            "ModPath": "/mods"
+        },
+        {
+            "ModName": "jei.jar",
+            "ModVersion": 33,
+            "ModLink": "https://cdn.modrinth.com/data/u6dRKJwZ/versions/p7yZWpEg/jei-1.20.1-forge-15.20.0.129.jar",
+            "ModSHA512": "280dff664abf3c04ecdf9e13a49619a25b7ba1c1f9d0f5c47394a4f9f71dc96628cf2e73de2143b75a16955e820de11dd87e06a6902088f2fbc4a48da92555a4",
+            "ModServerSide": "optional",
+            "ModClientSide": "optional",
+            "ModType": 0,
+            "ModPath": "/mods"
+        },
+        {
+            "ModName": "waterframes.jar",
+            "ModVersion": 33,
+            "ModLink": "https://cdn.modrinth.com/data/eBzFuVTM/versions/v8wcp1KM/waterframes-FORGE-mc1.20.1-v2.1.22.jar",
+            "ModSHA512": "1c73baa126c3cd8361b7ad4de2a2e7b61d0b48d7fe382934a2e5c6a3451a92fa385ce8b25f5f56f266b862a31b1ca41b8899f6ef436f7b8c20de1315b0b55673",
+            "ModServerSide": "required",
+            "ModClientSide": "required",
+            "ModType": 0,
+            "ModPath": "/mods"
+        },
+        {
+            "ModName": "cc-tweaked.jar",
+            "ModVersion": 33,
+            "ModLink": "https://cdn.modrinth.com/data/gu7yAYhd/versions/W45ytlaC/cc-tweaked-1.20.1-forge-1.117.0.jar",
+            "ModSHA512": "1dce8ee17e600f9d81c44281631b5dd1883edd344d1a9f67d0361064d4a03cf31a26ff5508ae95dd0a122e322d85c6221ce5619b95c8a672dc53cdedfbc70a6c",
+            "ModServerSide": "required",
+            "ModClientSide": "required",
+            "ModType": 0,
+            "ModPath": "/mods"
+        },
+        {
+            "ModName": "watervision.jar",
+            "ModVersion": 33,
+            "ModLink": "https://cdn.modrinth.com/data/dGGbEGoV/versions/yE93Q2Ed/watervision-FG-mc1.20.1-v0.1.0-alpha.jar",
+            "ModSHA512": "84cf3786980b19684863021f2fdb25bf0614042ea82d6569cbf0bceaae3746c7f32d62c34d94a0b344c4eeaf0149126405d317ea9163dd3c246b6afd94d989ef",
+            "ModServerSide": "required",
+            "ModClientSide": "required",
+            "ModType": 0,
+            "ModPath": "/mods"
+        },
+        {
+            "ModName": "curios.jar",
+            "ModVersion": 33,
+            "ModLink": "https://cdn.modrinth.com/data/vvuO3ImH/versions/IPQlZkz1/curios-forge-5.14.1%2B1.20.1.jar",
+            "ModSHA512": "1373f95fd111c977db2f6adcef8e4eb486a2d926a3e17374692dee4ac3d65857de6446c16922b531aa5ace2c23c666a7fcc28c720b2917c1e04808d15648ba87",
+            "ModServerSide": "required",
+            "ModClientSide": "required",
+            "ModType": 0,
+            "ModPath": "/mods"
+        },
+        {
+            "ModName": "creativecore.jar",
+            "ModVersion": 33,
+            "ModLink": "https://cdn.modrinth.com/data/OsZiaDHq/versions/IbFWHI5h/CreativeCore_FORGE_v2.12.32_mc1.20.1.jar",
+            "ModSHA512": "7f7c684a35020a0327e31f5521a363d1c29312a22839c69c5dbdf51d77428298dbd0ca685166c06d8426010448e777e087e141fef6b5093fd67cb73c4bd51f8a",
+            "ModServerSide": "optional",
+            "ModClientSide": "required",
+            "ModType": 0,
+            "ModPath": "/mods"
+        },
+        {
+            "ModName": "watermedia.jar",
+            "ModVersion": 33,
+            "ModLink": "https://cdn.modrinth.com/data/G922NeHS/versions/fB0LmHnR/watermedia-2.1.37.jar",
+            "ModSHA512": "d2bdadbb352c415e04aecf130759949f1081f8f410a4019b3b885a4e05a6ce9f6144dfb7c707685dad0f9b26c04e4a26dff5c3897d057b96cf4cec1384a148bb",
+            "ModServerSide": "unsupported",
+            "ModClientSide": "required",
+            "ModType": 0,
+            "ModPath": "/mods"
+        },
+        {
+            "ModName": "watermedia-yt-plugin.jar",
+            "ModVersion": 33,
+            "ModLink": "https://cdn.modrinth.com/data/P0w3IrnX/versions/rDtJujm2/watermedia_youtube_plugin-2.1.2.jar",
+            "ModSHA512": "9dd01e3768a10358d5262cd279227a622a7caf5fef67a66ba95d71b336403421cfd8c804b09c4bd0cc8fbac707ce1a403c69c8f46c62ae42534e801a2e235b86",
+            "ModServerSide": "unsupported",
+            "ModClientSide": "required",
+            "ModType": 0,
+            "ModPath": "/mods"
+        },
+        {
+            "ModName": "alexscaves-client.toml",
+            "ModVersion": 33,
+            "ModLink": "[BACKEND]:./config/alexscaves-client.toml",
+            "ModSHA512": "3a4e62c2aafd079b6f813b3f4c98296d44dbfcc8a59957d8733d293192f9b10ddde9fa7aab0a80277a807e950f64250e05d24f679f0d1ee1de33ee222333bbf6",
+            "ModServerSide": "supported",
+            "ModClientSide": "supported",
+            "ModType": 1,
+            "ModPath": "./config"
+        },
+        {
+            "ModName": "entityculling.json",
+            "ModVersion": 33,
+            "ModLink": "[BACKEND]:./config/entityculling.json",
+            "ModSHA512": "bfc6f4ff8638fe0a2fbeb698be674b9c9813f20d4166bff6ea1418fbb13010073cc6eb7e8fc4e769a6e341e82dc842d66cb7684947413de2b152c1d1bb37530e",
+            "ModServerSide": "supported",
+            "ModClientSide": "supported",
+            "ModType": 1,
+            "ModPath": "./config"
+        },
+        {
+            "ModName": "sound_physics_remastered-client.toml",
+            "ModVersion": 33,
+            "ModLink": "[BACKEND]:./config/sound_physics_remastered/sound_physics_remastered-client.toml",
+            "ModSHA512": "0f2f366e209f0820f3cf63fa84a4dcd93b514e249bd902088080e61ad18d0e4ea859f7100d1130443641773dd59960502895940229cd66c2c2e21d3a4fd99f5f",
+            "ModServerSide": "supported",
+            "ModClientSide": "supported",
+            "ModType": 1,
+            "ModPath": "./config/sound_physics_remastered"
+        },
+        {
+            "ModName": "waystones-common.toml",
+            "ModVersion": 33,
+            "ModLink": "[BACKEND]:./config/waystones-common.toml",
+            "ModSHA512": "9e343952de45f473c5a46afa8a93afc4a50368cb3788155149895b28cb0babc9ef737610901cccef685ea75442dd7197c9bd3e5f88537df9eb29877fd4035077",
+            "ModServerSide": "supported",
+            "ModClientSide": "supported",
+            "ModType": 1,
+            "ModPath": "./config"
+        },
+        {
+            "ModName": "thalassophobia_client.js",
+            "ModVersion": 33,
+            "ModLink": "[BACKEND]:./kubejs/client_scripts/thalassophobia_client.js",
+            "ModSHA512": "b5ccc8b27a969730bfd4f554dc3d1b6813c51a120b388a4b046c6324cfe153c425ec8433bb03537e69dc56cfe6762aa56636a393a1d852ce640d1f502d145717",
+            "ModServerSide": "supported",
+            "ModClientSide": "supported",
+            "ModType": 1,
+            "ModPath": "./kubejs/client_scripts"
+        },
+        {
+            "ModName": "thalassophobia_server.js",
+            "ModVersion": 33,
+            "ModLink": "[BACKEND]:./kubejs/server_scripts/thalassophobia_server.js",
+            "ModSHA512": "e8f10389cb0bd310ce74e987f9a2cb2a55fd0ac83a38958ad0b689a0bfba7bf9f4d6f1864992865fc776cf01b94045b92fd286f7c8e0578bd0f56433993fcf9e",
+            "ModServerSide": "supported",
+            "ModClientSide": "supported",
+            "ModType": 1,
+            "ModPath": "./kubejs/server_scripts"
+        },
+        {
+            "ModName": "thalassophobia_startup.js",
+            "ModVersion": 33,
+            "ModLink": "[BACKEND]:./kubejs/startup_scripts/thalassophobia_startup.js",
+            "ModSHA512": "9cb6534c4bfabeca447167fa1b04b6485aa1a1b28f07b29e1db1428d42e096f6ff4310c59b88c60df86a89425e61f2a30dade1e66040a01f9d71bb8156c8f441",
+            "ModServerSide": "supported",
+            "ModClientSide": "supported",
+            "ModType": 1,
+            "ModPath": "./kubejs/startup_scripts"
+        },
+        {
+            "ModName": "spawn.json",
+            "ModVersion": 33,
+            "ModLink": "[BACKEND]:./paxi/config/incontrol/spawn.json",
+            "ModSHA512": "7f96ba8cf364e8f92f90c946aac5f799b615bb6262693f59cf01e9b09665b65d34910ff97ba93e5365021ee3fb581aa131033ff50dde10c5012eb0400aa6b1c3",
+            "ModServerSide": "supported",
+            "ModClientSide": "supported",
+            "ModType": 1,
+            "ModPath": "./paxi/config/incontrol"
+        },
+        {
+            "ModName": "overworld.json",
+            "ModVersion": 33,
+            "ModLink": "[BACKEND]:./paxi/datapacks/Thalassophobia_Tectonic_Patch/data/minecraft/dimension_type/overworld.json",
+            "ModSHA512": "9c2978c5f254bb7b2ca3f5892e0236a39b6467351c42007a0292a0c8a09c0944bbc2630afb17c623da16775e2fbb6f75dc82961ccd24b81e1fedc864705a3d26",
+            "ModServerSide": "supported",
+            "ModClientSide": "supported",
+            "ModType": 1,
+            "ModPath": "./paxi/datapacks/Thalassophobia_Tectonic_Patch/data/minecraft/dimension_type"
+        },
+        {
+            "ModName": "READ_ME_TECTONIC.txt",
+            "ModVersion": 33,
+            "ModLink": "[BACKEND]:./paxi/datapacks/Thalassophobia_Tectonic_Patch/data/minecraft/worldgen/noise_settings/READ_ME_TECTONIC.txt",
+            "ModSHA512": "d3ceadcb925473c8ade06d2e2790c7364283f0e3c1c5fb6940fcca70582d14ea11440e99e1ff8a8630d1c755547cb1e4cb4811118e42b3a4091708c61d752ff0",
+            "ModServerSide": "supported",
+            "ModClientSide": "supported",
+            "ModType": 1,
+            "ModPath": "./paxi/datapacks/Thalassophobia_Tectonic_Patch/data/minecraft/worldgen/noise_settings"
+        },
+        {
+            "ModName": "pack.mcmeta",
+            "ModVersion": 33,
+            "ModLink": "[BACKEND]:./paxi/datapacks/Thalassophobia_Tectonic_Patch/pack.mcmeta",
+            "ModSHA512": "ec6060cafebed1d9612bf379bdff12700f6928d63d45be56da4a0d31f8a7c2f3a5b999f7ef2aa4338060c446b195c63de098ef6297119f21350c80dda3f4e443",
+            "ModServerSide": "supported",
+            "ModClientSide": "supported",
+            "ModType": 1,
+            "ModPath": "./paxi/datapacks/Thalassophobia_Tectonic_Patch"
+        }
+    ],
+    "InstanceVersion": 34
+}
