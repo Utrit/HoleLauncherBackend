@@ -1,5 +1,0 @@
-﻿[
-  { "minheight": 150, "mob": ["minecraft:drowned", "alexsmobs:flying_fish"], "result": "allow" },
-  { "maxheight": 0, "mob": ["aquamirae:maw", "alexscaves:deep_one", "minecraft:glow_squid"], "result": "allow" },
-  { "mob": ["minecraft:zombie", "minecraft:skeleton", "minecraft:creeper"], "minheight": 62, "result": "deny" }
-]

@@ -1,8 +1,0 @@
-﻿[reverb]
-enable_reverb = true
-cave_reverb_multiplier = 2.0
-underwater_reverb_multiplier = 1.8
-[absorption]
-underwater_absorption = 0.5
-[attenuation]
-underwater_attenuation_multiplier = 0.4

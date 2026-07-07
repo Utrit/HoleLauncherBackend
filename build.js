@@ -24,10 +24,10 @@ async function HandleInstance(dir){
     const instanceName = dir.split("/").pop()
     let files = utils.GetFilesInDirectory(dir)
     const info = utils.ReadJson(`${dir}/info.json`)
+    if (info.InstanceId == null) return
     const modrinth = utils.ReadJson(`${dir}/modrinth.json`)
     const instanceManifest = utils.ReadJson(`${dir}/manifest.json`)
     files = files.filter(item => !ToDelete.includes(item))
-
     const modList = []
     modList.push(HandleModList(modrinth.strong, info, 0))
     modList.push(HandleModList(modrinth.soft, info, 1))
@@ -43,6 +43,7 @@ async function HandleInstance(dir){
       InstanceName: info.InstanceName,
       InstanceMCVersion: info.InstanceMCVersion,
       InstanceForgeVersion: info.InstanceForgeVersion,
+      InstanceNeoForgeVersion: info.InstanceNeoForgeVersion,
       Mods: res
     }
     if (CompareManifests(manifest, instanceManifest, info)){
@@ -90,7 +91,7 @@ function CompareManifests(JsonNew, JsonCur, info){
       hasChanges = true
       continue
     }
-    if (addmodInfo.ModSHA512 == mod.ModSHA512 && addmodInfo.ModPath == mod.ModPath){
+    if (addmodInfo.ModSHA512 == mod.ModSHA512 && addmodInfo.ModPath == mod.ModPath && addmodInfo.ModType == mod.ModType){
       mod.ModVersion = addmodInfo.ModVersion
       continue
     }
@@ -164,17 +165,18 @@ async function FindAllMods(list, info) {
     const loading = []
     data.forEach(element=>{
       element.version = mappingMods[element.slug].version
+      element.dependencies = []
       loading.push(FindDependency(element, info, allMods, 10))
     })
     await Promise.all(loading)
     return allMods
 }
 
-async function FindDependency(mod, instanceInfo, accum, depth) {
+async function FindDependency(mod, instanceInfo, accum, depth, parent) {
     depth = depth - 1
     if (depth < 0) return
     const url = new URL(`${modrinthApi}/project/${mod.id}/version`);
-    url.searchParams.set("loaders", '["forge"]');
+    url.searchParams.set("loaders", instanceInfo.InstanceForgeVersion ? '["forge"]' : '["neoforge"]');
     url.searchParams.set("game_versions", `["${instanceInfo.InstanceMCVersion}"]`);
     url.searchParams.set("include_changelog", false);
     await randomDelay(100,2000)
@@ -198,12 +200,17 @@ async function FindDependency(mod, instanceInfo, accum, depth) {
         accum.push(data);
     }
 
+    if (parent){
+      parent.depend.push(data);
+    }
+
     const promises = [];
 
     for (const dep of data.dependencies) {
         if (dep.dependency_type === "required" && dep.project_id) {
+            data.depend = []
             promises.push(
-                FindDependency({id:dep.project_id, version:dep.version_id}, instanceInfo, accum, depth)
+                FindDependency({id:dep.project_id, version:dep.version_id, dependencies:[]}, instanceInfo, accum, depth, data)
             );
         }
     }
@@ -216,15 +223,21 @@ async function FindModVersion(modInfo, modsInfo, type, info) {
       return
     }
     const data = modsInfo.find(x=>x.id == modInfo.project_id)
+    let depend = []
+    if (modInfo.depend){
+      depend = modInfo.depend.map(x=>modsInfo.find(y=>y.id == x.project_id).slug)
+    }
     const file = modInfo.files.at(0)
     return{
       ModName: data.slug + ".jar",
+      ModSlug: data.slug,
       ModVersion: info.InstanceBuildVersion,
       ModLink: file.url,
       ModSHA512: file.hashes.sha512,
       ModServerSide: data.server_side,
       ModClientSide: data.client_side,
       ModType: type,
+      ModDepend: depend.filter((e,i) => depend.indexOf(e) == i),
       ModPath: "/mods"
     }
 }
