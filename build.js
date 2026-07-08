@@ -166,7 +166,7 @@ async function FindAllMods(list, info) {
     data.forEach(element=>{
       element.version = mappingMods[element.slug].version
       element.dependencies = []
-      loading.push(FindDependency(element, info, allMods, 10))
+      loading.push(FindDependency(element, info, allMods, 4))
     })
     await Promise.all(loading)
     return allMods
