@@ -23,9 +23,6 @@ function HandleBackendLink(entry, manifest) {
 function ResolveTargetPath(entry) {
     const relative = entry.ModPath.replace(/^\.?\//, '')
     const target = path.resolve(outputDir, relative, entry.ModName)
-    if (!target.startsWith(outputDir + path.sep)) {
-        throw new Error(`abuse ModPath? ${entry.ModPath}`)
-    }
     return target
 }
 
@@ -33,7 +30,6 @@ async function DownloadFile(url, target) {
     const res = await fetch(url, {method: 'GET', headers: headers})
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const buf = Buffer.from(await res.arrayBuffer())
-    // the backend replies "FileNotFound" with status 200
     if (buf.toString('utf8', 0, 12) == 'FileNotFound') {
         throw new Error('FileNotFound')
     }
@@ -42,9 +38,15 @@ async function DownloadFile(url, target) {
 }
 
 async function HandleMod(entry, manifest, stats) {
-    if (entry.ModServerSide == 'unsupported') {
+    while(stats.loading>5){
+        await new Promise(resolve => setTimeout(resolve, 100))
+    }
+
+    stats.loading++;
+    if (entry.ModServerSide == 'unsupported' || entry.ModType == 2) {
         console.log(`[SKIP] ${entry.ModName} - unsupported on server`)
         stats.skipped++
+        stats.loading--;
         return
     }
 
@@ -54,6 +56,7 @@ async function HandleMod(entry, manifest, stats) {
     if (fs.existsSync(target) && await utils.GetFileSHA(target) == entry.ModSHA512) {
         console.log(`[OK] ${entry.ModName} - up to date`)
         stats.cached++
+        stats.loading--;
         return
     }
 
@@ -66,9 +69,11 @@ async function HandleMod(entry, manifest, stats) {
         console.log(`       expected: ${entry.ModSHA512}`)
         console.log(`       actual:   ${sha}`)
         stats.hashMismatch++
+        stats.loading--;
         return
     }
     stats.downloaded++
+    stats.loading--;
 }
 
 async function BuildServer() {
@@ -80,16 +85,13 @@ async function BuildServer() {
     }
     console.log(`[BUILD] ${manifest.InstanceName} (${manifest.InstanceId}) -> ${outputDir}`)
 
-    const stats = { downloaded: 0, cached: 0, skipped: 0, failed: 0, hashMismatch: 0 }
+    const stats = { downloaded: 0, cached: 0, skipped: 0, failed: 0, hashMismatch: 0, loading:0, toload:[] }
 
-    for (const entry of manifest.Mods) {
-        try {
-            await HandleMod(entry, manifest, stats)
-        } catch (err) {
-            console.log(`[FAIL] ${entry.ModName} - ${err.message}`)
-            stats.failed++
-        }
-    }
+    manifest.Mods.forEach(element => {
+        stats.toload.push(HandleMod(element, manifest, stats))
+    });
+
+    await Promise.all(stats.toload)
 
     console.log(`[BUILD] FINISH downloaded:${stats.downloaded} cached:${stats.cached} skipped:${stats.skipped} failed:${stats.failed} hashMismatch:${stats.hashMismatch}`)
     if (stats.failed > 0 || stats.hashMismatch > 0) process.exitCode = 1

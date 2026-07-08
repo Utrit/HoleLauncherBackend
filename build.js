@@ -6,6 +6,7 @@ const folderPath = './instances';
 const modrinthApi = "https://api.modrinth.com/v2"
 const projectsUrl = new URL(`${modrinthApi}/projects`)
 const headers = {'content-type': 'application/json', "user-agent": "utrit/holelauncher/1.0"}
+let loading = 0
 
 async function HandleInstances(directoryPath) {
   try {
@@ -173,13 +174,16 @@ async function FindAllMods(list, info) {
 }
 
 async function FindDependency(mod, instanceInfo, accum, depth, parent) {
+    while(loading>10){
+      await randomDelay(100,250)
+    }  
+    loading++;
     depth = depth - 1
     if (depth < 0) return
     const url = new URL(`${modrinthApi}/project/${mod.id}/version`);
     url.searchParams.set("loaders", instanceInfo.InstanceForgeVersion ? '["forge"]' : '["neoforge"]');
     url.searchParams.set("game_versions", `["${instanceInfo.InstanceMCVersion}"]`);
     url.searchParams.set("include_changelog", false);
-    await randomDelay(100,2000)
     const versions = await fetchJson(url.toString());
     const releases = versions.filter(x=>x.version_type=="release")
     let data = {}
@@ -192,7 +196,8 @@ async function FindDependency(mod, instanceInfo, accum, depth, parent) {
     }
 
     if (!data?.project_id) {
-      console.log(`[WARN] ${mod.slug} - not supported by current version SKIP`)
+        console.log(`[WARN] ${mod.slug} - not supported by current version SKIP`)
+        loading--;
         return;
     }
 
@@ -214,7 +219,7 @@ async function FindDependency(mod, instanceInfo, accum, depth, parent) {
             );
         }
     }
-
+    loading--;
     await Promise.all(promises);
 }
 
