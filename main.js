@@ -17,8 +17,19 @@ app.get('/instances', async (req, res) => {
 })
 
 app.get("/loadcontent", async (req, res)=>{
-    const instanceId = req.query.id
+    const instanceId = parseInt(req.query.id)
+    if (Number.isNaN(instanceId)){
+        console.log(`fail ${req.query.id} must be number`)
+        res.send("FileNotFound")
+        return
+    }
     const filePath = req.query.filePath
+    if (filePath.split("..").length - 1 > 0){
+        console.log(`fail ${filePath} abuse filepath?`)
+        res.send("FileNotFound")
+        return
+    }
+
     const path =  `${__dirname}/${instancesPath}/${instanceId}/${filePath}`
     const fileName = filePath.split('/').pop()
     if (!fs.existsSync(path)){
