@@ -17,9 +17,16 @@ app.get('/instances', async (req, res) => {
 })
 
 app.get("/loadcontent", async (req, res)=>{
-    const instanceId = parseInt(req.query.id)
-    if (Number.isNaN(instanceId)){
-        console.log(`fail ${req.query.id} must be number`)
+    const instanceId = req.query.id
+    const allFiles = utils.GetFilesInDirectory(instancesPath)
+    const manifests = []
+    allFiles.forEach(path => {
+        const data = utils.ReadJson(`${instancesPath}/${path}/manifest.json`)
+        manifests.push(data)
+    });
+
+    if (!manifests.some(x=>x.InstanceId == instanceId)){
+        console.log(`fail ${req.query.id} must exists`)
         res.send("FileNotFound")
         return
     }
