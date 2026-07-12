@@ -175,7 +175,7 @@ async function FindAllMods(list, info) {
 
 async function FindDependency(mod, instanceInfo, accum, depth, parent) {
     while(loading>10){
-      await randomDelay(100,250)
+      await randomDelay(100,100)
     }  
     loading++;
     depth = depth - 1
@@ -184,7 +184,17 @@ async function FindDependency(mod, instanceInfo, accum, depth, parent) {
     url.searchParams.set("loaders", instanceInfo.InstanceForgeVersion ? '["forge"]' : '["neoforge"]');
     url.searchParams.set("game_versions", `["${instanceInfo.InstanceMCVersion}"]`);
     url.searchParams.set("include_changelog", false);
-    const versions = await fetchJson(url.toString());
+    let fetching = true
+    let versions = []
+    while(fetching){
+        versions = await fetchJson(url.toString());
+        fetching = versions == undefined
+        if (fetching){
+          console.log(`[WARN] Modrinth request rate exeede cooldown`)
+          await randomDelay(1000,10000)
+        }
+    }
+
     const releases = versions.filter(x=>x.version_type=="release")
     let data = {}
     if (mod.version){
@@ -196,13 +206,16 @@ async function FindDependency(mod, instanceInfo, accum, depth, parent) {
     }
 
     if (!data?.project_id) {
-        console.log(`[WARN] ${mod.slug} - not supported by current version SKIP`)
+        console.log(`[WARN] ${mod.slug} [${mod.id}] - not supported by current version SKIP`)
         loading--;
         return;
     }
-
-    if (!accum.find(x=>x.project_id == data.project_id)) {
-        accum.push(data);
+    data.depth = depth
+    const idata = accum.findIndex(x=>x.project_id === data.project_id)
+    if (idata == -1) {
+      accum.push(data);
+    }else if(accum[idata].depth < data.depth){
+      accum[idata] = data
     }
 
     if (parent){
@@ -230,7 +243,10 @@ async function FindModVersion(modInfo, modsInfo, type, info) {
     const data = modsInfo.find(x=>x.id == modInfo.project_id)
     let depend = []
     if (modInfo.depend){
-      depend = modInfo.depend.map(x=>modsInfo.find(y=>y.id == x.project_id).slug)
+      depend = modInfo.depend.map(x=>modsInfo.find(y=>y.id == x.project_id))
+      depend.forEach(element => {
+        element.client_side = data.client_side
+      });
     }
     const file = modInfo.files.at(0)
     return{
@@ -242,7 +258,7 @@ async function FindModVersion(modInfo, modsInfo, type, info) {
       ModServerSide: data.server_side,
       ModClientSide: data.client_side,
       ModType: type,
-      ModDepend: depend.filter((e,i) => depend.indexOf(e) == i),
+      ModDepend: depend.filter((e,i) => depend.indexOf(e) == i).map(x=>x.slug),
       ModPath: "/mods"
     }
 }
