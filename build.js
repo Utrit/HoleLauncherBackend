@@ -23,19 +23,18 @@ const ToDelete = ["info.json", "modrinth.json", "manifest.json"]
 
 async function HandleInstance(dir){
     const instanceName = dir.split("/").pop()
-    let files = utils.GetFilesInDirectory(dir)
     const info = utils.ReadJson(`${dir}/info.json`)
     if (info.InstanceId == null) return
     const modrinth = utils.ReadJson(`${dir}/modrinth.json`)
     const instanceManifest = utils.ReadJson(`${dir}/manifest.json`)
-    files = files.filter(item => !ToDelete.includes(item))
     const modList = []
     modList.push(HandleModList(modrinth.strong, info, 0))
     modList.push(HandleModList(modrinth.soft, info, 1))
     modList.push(HandleModList(modrinth.optional, info, 2))
     const res = (await Promise.all(modList)).flat().filter(x=>x!=undefined)
 
-    const localFiles = (await PackLocalFiles(dir, files)).flat()
+    let localFiles = (await PackLocalFiles(dir)).flat()
+    localFiles = localFiles.filter(item => !ToDelete.some(x=>`${dir}/${x}` == item))
     const localShareFiles = await GetFilesSHA(localFiles)
     AddLocalFiles(localShareFiles, info, res, dir)
 
@@ -128,9 +127,7 @@ async function GetFilesSHA(files) {
 
 async function PackLocalFiles(dir, files) {
   const allFiles = []
-  files.forEach(async x=>{
-    allFiles.push(utils.FindAllFiles(`${dir}/${x}`))
-  })
+  allFiles.push(utils.FindAllFiles(dir))
   return Promise.all(allFiles)
 }
 
