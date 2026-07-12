@@ -49,9 +49,9 @@ app.get("/loadcontent", async (req, res)=>{
 })
 
 app.get("/launcher", async (req, res)=>{
-    const path =  `${__dirname}/launcher.zip`
+    const path = `${__dirname}/launcher.zip`
     if (!fs.existsSync(path)){
-        console.log(`fail send launcher to client`)
+        console.log(`fail send launcher to client [${__dirname}/launcher.zip]`)
         res.send("FileNotFound")
         return
     }
