@@ -31,7 +31,12 @@ async function HandleInstance(dir){
     modList.push(HandleModList(modrinth.strong, info, 0))
     modList.push(HandleModList(modrinth.soft, info, 1))
     modList.push(HandleModList(modrinth.optional, info, 2))
-    const res = (await Promise.all(modList)).flat().filter(x=>x!=undefined)
+    let res = (await Promise.all(modList)).flat().filter(x=>x!=undefined)
+    res = [...new Map(
+      res
+        .sort((a, b) => b.ModType - a.ModType)
+        .map(mod => [mod.ModSlug, mod])
+    ).values()]
 
     let localFiles = (await PackLocalFiles(dir)).flat()
     localFiles = localFiles.filter(item => !ToDelete.some(x=>`${dir}/${x}` == item))
